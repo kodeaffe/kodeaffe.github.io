@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}portfolio@kodeaffe{% endblock title %}
+
+{% block content %}
+<div id="portfolio">
+	<h1>portfolio</h1>
+
+		<div class="row">
+			<div class="col-xs-12 col-md-9">
+				<div class="main">
+					<div id="intro">
+						Have a look at my IT-related doings here and check github for my main project repository:<br />
+						<a title="kodeaffe @ github" href="https://github.com/kodeaffe">https://github.com/kodeaffe</a>
+					</div>
+
+					<div id="years">
+					</div><!-- years -->
+				</div><!-- main -->
+			</div>
+
+			<div class="col-xs-12 col-md-3">
+				<div class="sidebar" id="technologies">
+					<h2>Technologies</h2>
+					<ul></ul>
+				</div>
+			</div><!-- technologies -->
+
+		</div><!-- row -->
+
+		<script src="static/js/portfolio.js" type="text/javascript"></script>
+</div>
+{% endblock content %}

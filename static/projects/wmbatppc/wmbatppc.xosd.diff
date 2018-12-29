@@ -1,0 +1,45 @@
+diff -Naur wmbatppc-2.3.old/wmbatppc.c wmbatppc-2.3/wmbatppc.c
+--- wmbatppc-2.3.old/wmbatppc.c	2003-07-23 16:34:06.000000000 +0200
++++ wmbatppc-2.3/wmbatppc.c	2004-02-11 10:07:10.114990512 +0100
+@@ -631,7 +631,6 @@
+   int ref_bat; /* reference battery, ie the weakest one */
+   char buf[128];
+ 
+-
+   if ((sys_pmu.time_left <= 0) ||
+       ((sys_pmu.b[LEFT_BATTERY].available == NO_BATT) && (sys_pmu.b[RIGHT_BATTERY].available == NO_BATT)))
+     return;
+@@ -857,12 +856,18 @@
+        * 1 line for the right battery
+        */
+       osd = xosd_create(3);
+-      
+-      xosd_set_font(osd, "-adobe-helvetica-bold-r-*-*-14-*"); //"-misc-fixed-medium-r-semicondensed-*-14-*-*-*-c-*-*-*");
+-      xosd_set_timeout(osd, 5);
+-      xosd_set_shadow_offset(osd, 2);
+-      xosd_set_vertical_offset(osd, 10);
+-      xosd_set_horizontal_offset(osd, 10);
++      if (osd == NULL)
++      {
++          fprintf(stderr, "%s: XOSD error: %s\n%s: XOSD disabled.\n", ProgName, xosd_error, ProgName);
++      }
++      else
++      {
++        xosd_set_font(osd, "-adobe-helvetica-bold-r-*-*-14-*"); //"-misc-fixed-medium-r-semicondensed-*-14-*-*-*-c-*-*-*");
++        xosd_set_timeout(osd, 5);
++        xosd_set_shadow_offset(osd, 2);
++        xosd_set_vertical_offset(osd, 10);
++        xosd_set_horizontal_offset(osd, 10);
++      }
+ #endif /* ENABLE_XOSD */
+       
+       wmbatppc_routine(argc, argv);
+@@ -935,7 +940,7 @@
+       RedrawWindow();
+ 
+ #ifdef ENABLE_XOSD
+-      if ((osd_freq < 0) || ((curtime - last_osd) > osd_freq) || ((curtime - last_osd) < 0))
++      if (osd != NULL && ((osd_freq < 0) || ((curtime - last_osd) > osd_freq) || ((curtime - last_osd) < 0)))
+ 	DisplayOSD();
+ 
+ #endif /* ENABLE_XOSD */

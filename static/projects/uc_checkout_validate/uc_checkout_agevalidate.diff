@@ -1,0 +1,82 @@
+diff -Naur uc_checkout_agevalidate/uc_checkout_agevalidate.info uc_checkout_agevalidate_shensche//uc_checkout_agevalidate.info
+--- uc_checkout_agevalidate/uc_checkout_agevalidate.info	2008-09-23 21:21:18.000000000 +1200
++++ uc_checkout_agevalidate_shensche//uc_checkout_agevalidate.info	2011-06-16 05:45:53.465473145 +1200
+@@ -2,5 +2,12 @@
+ author = Sunsu - Lyle Pratt
+ name = UC Checkout Age Validate
+ description = Creates a form field on the checkout page to validate that the customer is at least 21 years of age or older before he/she can progress further.
+-dependencies = uc_store uc_cart uc_order uc_product workflow_ng
+-package = Ubercart - extra
++dependencies[] = uc_store
++dependencies[] = uc_cart
++dependencies[] = uc_order
++package = "Ubercart - extra"
++
++version = "6.x-1.0"
++core = "6.x"
++project = "uc_checkout_agevalidate"
++datestamp = "1293643009"
+diff -Naur uc_checkout_agevalidate/uc_checkout_agevalidate.module uc_checkout_agevalidate_shensche//uc_checkout_agevalidate.module
+--- uc_checkout_agevalidate/uc_checkout_agevalidate.module	2008-09-23 18:30:00.000000000 +1200
++++ uc_checkout_agevalidate_shensche//uc_checkout_agevalidate.module	2011-06-16 05:45:53.465473145 +1200
+@@ -3,44 +3,45 @@
+ 
+ /**
+ * @file
+-* Module require a user to validate that they are 21 years of age during the UberCart checkout process.
++* Module require a user to validate that they are 18 years of age during the UberCart checkout process.
+ */
+ 
+ /**
+ * Implementation of hook_form_alter()
+ */
+-function uc_checkout_agevalidate_form_alter($form_id, &$form) {
+-	if ($form_id == 'uc_cart_checkout_form') 
++function uc_checkout_agevalidate_form_alter($form, &$form_state) {
++	if ($form['#id'] == 'uc-cart-checkout-form') 
+ 	{	
+ 		//Get the store name;
+ 		$store = variable_get('uc_store_name', '');
+ 
+ 		//Make sure the use validates his/her age
+-		$form['#validate'] += array('uc_checkout_agevalidate_validate' => array());
++		$form['#validate'][] = 'uc_checkout_agevalidate_validate';
+ 
+ 		//Create the age validation checkbox.
+-		$form['panes']['customer']['age_validate'] = array( 
++		$form['panes']['customer']['age-validate'] = array( 
+ 			'#type' => 'checkbox',
+-       		'#title' => t('Check this box if you are 21 years of age.'),
+-	       	'#description' => "You must be at least 21 to purchase wine from $store.",
+-			'#default_value' => 0
++       		'#title' => 'Setze ein Häkchen, wenn du mindestens 18 Jahre alt bist.',
++	       	'#description' => 'Du musst mindestens 18 sein, um bei uns einzukaufen!',
++			'#default_value' => 0,
++            '#return_value' => 1
+ 			);
+ 	}
+ }
+ 
+ /**
+-* Function to check to make sure "21" box is checked
++* Function to check to make sure "18" box is checked
+ */
+ 
+-function uc_checkout_agevalidate_validate($formid, $form_values) 
++function uc_checkout_agevalidate_validate($form, &$form_state) 
+ {
+-	//Check to see whether the users specified that he/she was over the age of 21.
+-      if ($form_values['panes']['customer']['age_validate'] == 0) 
+-      {
++	//Check to see whether the users specified that he/she was over the age of 18.
++      if ($form_state['values']['panes']['customer']['age-validate'] == 0) 
++    {
+ 		//Get the store name.
+ 		$store = variable_get('uc_store_name', '');
+ 
+ 		//Set the error
+-      		form_set_error('age_validate', "You must be at least 21 years of age to purchase products from $store. If you are 21 years old, check the box below the \"Email Address\" field.");
+-      }
++		form_set_error('age-validate', "Du musst bestätigen, dass Du 18 Jahre oder älter bist.");
++    }
+ }

@@ -1,0 +1,28 @@
+Format: 1.7
+Date: Wed, 12 Oct 2005 14:42:33 +0200
+Source: qpspmanager
+Binary: qpspmanager
+Architecture: source i386
+Version: 1.2.1-2
+Distribution: unstable
+Urgency: low
+Maintainer: Sebastian Henschel <psp@kodeaffe.de>
+Changed-By: Sebastian Henschel <shensche@debian.org>
+Description: 
+ qpspmanager - A file manager for the Sony Playstation Portable
+Changes: 
+ qpspmanager (1.2.1-2) unstable; urgency=low
+ .
+   * debian/qpspmanager.1 + debian/control:
+     - Replaced description by upstream's description
+   * src/src.pro, src/main.cpp:
+     - Changed paths from /usr/local to /usr
+   * src/translations/qpspmanager_de.*:
+     - Added german translations
+   * debian/rules:
+     - Modified build, clean and install target in order to make use of
+     translations
+Files: 
+ 5b081a6c351cf840b359dbbf00fb30fa 414 x11 optional qpspmanager_1.2.1-2.dsc
+ 565f04d1f1d2c91ccc8641960374aecc 7444 x11 optional qpspmanager_1.2.1-2.diff.gz
+ 5603b62bd65a495fa9dec892d6a7e06d 81032 x11 optional qpspmanager_1.2.1-2_i386.deb

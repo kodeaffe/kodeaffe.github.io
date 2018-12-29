@@ -1,0 +1,240 @@
+diff -Naur bubblemon-dockapp-1.4/bubblemon.c bubblemon-dockapp-1.4-sh/bubblemon.c
+--- bubblemon-dockapp-1.4/bubblemon.c	Tue Aug 28 12:06:09 2001
++++ bubblemon-dockapp-1.4-sh/bubblemon.c	Mon May 20 20:29:59 2002
+@@ -93,11 +93,11 @@
+ 			 unsigned char *buf);
+ static void draw_digit(int srcx, int srcy, int destx, int desty);
+ static void draw_string(char *string, int x, int y, int color);
+-static void draw_cpudigit(const int what, const int where,
++static void draw_cpudigit(const int what, const int where, const int row,
+ 			  unsigned char *kit);
+ 
+ static void render_secondary(void);
+-static void realtime_alpha_blend_of_cpu_usage(int cpu, int proximity);
++static void realtime_alpha_blend_of_cpu_usage(int cpu, int uptime, int proximity);
+ static void roll_membuffer(void);
+ static void roll_history(void);
+ #endif
+@@ -626,10 +626,11 @@
+ static void bubblemon_update(int proximity)
+ {
+     Bubble *bubbles = bm.bubbles;
+-    unsigned int i, loadPercentage, *col, x, y;
++    unsigned int i, loadPercentage, uptime, *col, x, y;
+     unsigned char *ptr, *buf, *buf_ptr;
+     unsigned int aircolor, watercolor, aliascolor;
+     unsigned int waterlevels_goal;
++
+     /*int current_waterlevel_goal; */
+ 
+     /* These values are for keeping track of where we have to start
+@@ -644,6 +645,9 @@
+     /* Find out the CPU load */
+     loadPercentage = system_cpu();
+ 
++    /* Fint out uptime */
++    uptime = system_uptime();
++
+ #ifdef ENABLE_MEMSCREEN
+     /* get loadavg */
+     if (memscreen_enabled)
+@@ -930,17 +934,17 @@
+      * about this isn't the right one :) */
+ #if defined(ENABLE_CPU) && defined(ENABLE_MEMSCREEN)
+     if (cpu_enabled || memscreen_enabled) {
+-	realtime_alpha_blend_of_cpu_usage(loadPercentage, proximity);
++	realtime_alpha_blend_of_cpu_usage(loadPercentage, uptime, proximity);
+     }
+ #endif
+ #if defined(ENABLE_CPU) && !defined(ENABLE_MEMSCREEN)
+     if (cpu_enabled) {
+-	realtime_alpha_blend_of_cpu_usage(loadPercentage, proximity);
++	realtime_alpha_blend_of_cpu_usage(loadPercentage, uptime, proximity);
+     }
+ #endif
+ #if !defined(ENABLE_CPU) && defined(ENABLE_MEMSCREEN)
+     if (memscreen_enabled) {
+-	realtime_alpha_blend_of_cpu_usage(loadPercentage, proximity);
++	realtime_alpha_blend_of_cpu_usage(loadPercentage, uptime, proximity);
+     }
+ #endif
+ 
+@@ -1149,14 +1153,14 @@
+ #ifdef ENABLE_CPU
+ /* draws digits for the CPU meter. This function is very specific
+  * to the meter.  Arguments it takes are not what they seem initially */
+-static void draw_cpudigit(const int what, const int where,
++static void draw_cpudigit(const int what, const int where, const int row,
+ 			  unsigned char *kit)
+ {
+     unsigned int len, y;
+     unsigned char *to, *from;
+     for (y = 0; y < 9; y++) {
+ 	len = 21;
+-	to = kit + y * 75 + where;
++	to = kit + y * 147 + where + (row * 9 * 147);
+ 	from = digits + y * 285 + what;
+ 	while (len--)
+ 	    *to++ = *from++;
+@@ -1165,11 +1169,11 @@
+ #endif				/* ENABLE_CPU */
+ 
+ #if defined(ENABLE_CPU) || defined(ENABLE_MEMSCREEN)
+-static void realtime_alpha_blend_of_cpu_usage(int cpu, int proximity)
++static void realtime_alpha_blend_of_cpu_usage(int cpu, int uptime, int proximity)
+ {
+-    /* where is the text going to be (now, bottom-center) */
+-#define POSX 16
+-#define POSY 46
++    /* where is the text going to be (now, top-center) */
++#define POSX 4 
++#define POSY 0
+     int bob;
+ 
+     /* memory window */
+@@ -1184,9 +1188,12 @@
+     int hibyte, y, pos;
+ 
+     /* CPU load buffer */
+-    static unsigned char kit[25 * 3 * 9 + 1];
++    static unsigned char kit[49 * 3 * 18 + 1];
+     unsigned char *kitptr;
+ 
++    /* uptime data */
++    int up[4], tmp0, tmp1, i; 
++
+     /* the plan is simple.  we don't want to redraw the digits every update
+      * because that doesn't look so good.  so we average it, and draw only
+      * once every 10 updates. We alpha blend the static buffer so we still
+@@ -1198,17 +1205,44 @@
+ 	avg ^= avg;		/* zero.  Haha, I guess these are not */
+ 	yoh ^= yoh;		/* register vars, optimizer just zeros them */
+ 	hibyte = cpu / 10;	/* but it's cool to know it understands xor a, a */
++	draw_cpudigit(216, 0, 0, kit);
++	draw_cpudigit(216, 18, 0, kit);
++
+ 	if (hibyte == 10) {
+-	    draw_cpudigit(18, 0, kit);
+-	    draw_cpudigit(0, 18, kit);
+-	    draw_cpudigit(0, 36, kit);
++	    draw_cpudigit(18, 36, 0, kit);
++	    draw_cpudigit(0, 54, 0, kit);
++	    draw_cpudigit(0, 72, 0, kit);
+ 	} else {
+-	    draw_cpudigit(216, 0, kit);
+-	    draw_cpudigit(hibyte * 18, 18, kit);
+-	    draw_cpudigit((cpu % 10) * 18, 36, kit);
++	    draw_cpudigit(216, 36, 0, kit);
++	    draw_cpudigit(hibyte * 18, 54, 0, kit);
++	    draw_cpudigit((cpu % 10) * 18, 72, 0, kit);
+ 	}
+ 	/* percent sign is always there */
+-	draw_cpudigit(180, 54, kit);
++	draw_cpudigit(180, 90, 0, kit);
++
++	/* draw uptime */
++	up[0] = uptime / 86400; /* 24 * 60 * 60 */
++	tmp0 = up[0] * 86400;
++	up[1] = (uptime - tmp0) / 3600; /* 60 * 60 */
++	tmp1 = up[1] * 3600;
++	up[2] = (uptime - tmp0 - tmp1) / 60;
++	up[3] = uptime - tmp0 - tmp1 - up[2] * 60;
++
++	i = 0;
++	/*for (; i < 4; i++) {
++		draw_cpudigit ((up[i] / 10) * 18, i * 36, 1, kit);
++		draw_cpudigit ((up[i] % 10) * 18, i * 36 + 18, 1, kit);
++	}*/
++
++	
++	draw_cpudigit ((up[1] / 10) * 18, 0, 1, kit); /* hour */
++	draw_cpudigit ((up[1] % 10) * 18, 18, 1, kit);
++	draw_cpudigit (216, 36, 1, kit);
++	draw_cpudigit ((up[2] / 10) * 18, 54, 1, kit); /* min */
++	draw_cpudigit ((up[2] % 10) * 18, 72, 1, kit);
++	draw_cpudigit (216, 90, 1, kit);
++	draw_cpudigit ((up[3] / 10) * 18, 108, 1, kit); /* sec */
++	draw_cpudigit ((up[3] % 10) * 18, 126, 1, kit);
+     }
+ #endif				/* ENABLE_CPU */
+     /* sexy fade effect */
+@@ -1258,10 +1292,10 @@
+ 	 * which appears if we / 128 instead of >> 7. 
+ 	 */
+ 	kitptr = kit;
+-	for (y = 0; y < 9; y++) {
++	for (y = 0; y < 18; y++) {
+ 	    unsigned char src;
+ 	    pos = (y + POSY) * 56 * 3 + (POSX * 3);
+-	    bob = 75;		/* 25 * 3 */
++	    bob = 147;		/* 55 * 3 */
+ 	    while (bob--) {
+ 		src = bm.rgb_buf[pos];
+ 
+diff -Naur bubblemon-dockapp-1.4/include/sys_include.h bubblemon-dockapp-1.4-sh/include/sys_include.h
+--- bubblemon-dockapp-1.4/include/sys_include.h	Sat Feb 17 10:03:01 2001
++++ bubblemon-dockapp-1.4-sh/include/sys_include.h	Mon May 20 17:31:37 2002
+@@ -24,6 +24,9 @@
+ int system_memory(void);	/* set memory related values in BubbleMonData
+ 				   and return 1, or return 0 if memory didn't
+ 				   change */
++
++int system_uptime(void);   /* return current uptime in seconds */
++
+ #ifdef ENABLE_MEMSCREEN
+ void system_loadavg(void);	/* get current load average and put into
+ 				   bm->loadavg[].{i,f} */
+diff -Naur bubblemon-dockapp-1.4/sys_freebsd.c bubblemon-dockapp-1.4-sh/sys_freebsd.c
+--- bubblemon-dockapp-1.4/sys_freebsd.c	Mon Apr 16 06:44:53 2001
++++ bubblemon-dockapp-1.4-sh/sys_freebsd.c	Sat May 25 14:57:13 2002
+@@ -206,4 +206,7 @@
+ }
+ #endif				/* ENABLE_MEMSCREEN */
+ 
++
++
++int system_uptime(void) { return 0; }
+ /* ex:set ts=8: */
+diff -Naur bubblemon-dockapp-1.4/sys_linux.c bubblemon-dockapp-1.4-sh/sys_linux.c
+--- bubblemon-dockapp-1.4/sys_linux.c	Sat Mar 10 10:09:14 2001
++++ bubblemon-dockapp-1.4-sh/sys_linux.c	Mon May 20 20:25:52 2002
+@@ -129,3 +129,18 @@
+     }
+ }
+ #endif				/* ENABLE_MEMSCREEN */
++
++
++
++/* return system uptime in seconds */
++int system_uptime(void)
++{
++	int uptime;
++    FILE *stat;
++
++    stat = fopen("/proc/uptime", "r");
++    fscanf(stat, "%d", &uptime);
++    fclose(stat);
++
++	return uptime;
++}
+diff -Naur bubblemon-dockapp-1.4/sys_openbsd.c bubblemon-dockapp-1.4-sh/sys_openbsd.c
+--- bubblemon-dockapp-1.4/sys_openbsd.c	Tue Aug 28 12:05:05 2001
++++ bubblemon-dockapp-1.4-sh/sys_openbsd.c	Sat May 25 14:57:42 2002
+@@ -127,4 +127,6 @@
+ }
+ #endif				/* ENABLE_MEMSCREEN */
+ 
++
++int system_uptime (void) { return 0; }
+ /* ex:set sw=4 ts=4: */
+diff -Naur bubblemon-dockapp-1.4/sys_sunos.c bubblemon-dockapp-1.4-sh/sys_sunos.c
+--- bubblemon-dockapp-1.4/sys_sunos.c	Mon Feb 19 18:53:26 2001
++++ bubblemon-dockapp-1.4-sh/sys_sunos.c	Sat May 25 15:21:30 2002
+@@ -323,3 +323,7 @@
+ 	kn = kstat_data_lookup(ks, "avenrun_15min");
+ 	*fift_m = kn->value.ul / (ncpus * 256.0);
+ }
++
++
++
++int system_uptime (void) { return 0; }

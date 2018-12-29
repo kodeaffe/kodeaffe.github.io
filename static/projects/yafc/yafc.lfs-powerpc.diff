@@ -1,0 +1,33 @@
+diff -Naur yafc-1.0/src/get.c yafc-1.0-powerpcfixed/src/get.c
+--- yafc-1.0/src/get.c	2002-12-02 13:21:18.000000000 +0100
++++ yafc-1.0-powerpcfixed/src/get.c	2003-12-19 01:02:27.715291712 +0100
+@@ -279,10 +279,10 @@
+ 				e = xstrdup(ctime(&sb.st_mtime));
+ 				a = ask(ASKYES|ASKNO|ASKUNIQUE|ASKCANCEL|ASKALL|ASKRESUME,
+ 						ASKRESUME,
+-						_("Local file '%s' exists\nLocal: %ld bytes, %sRemote: %ld bytes, %sOverwrite?"),
+-						shortpath(dest, 42, gvLocalHomeDir),
+-						sb.st_size, e ? e : "unknown date",
+-						ftp_filesize(fi->path), ctime(&ft));
++						_("Local file '%s' exists\nLocal: %lld bytes, %sRemote: %lld bytes, %sOverwrite?"),
++                        shortpath(dest, 42, gvLocalHomeDir),
++                        (unsigned long long) sb.st_size, e ? e : "unknown date",
++                        ftp_filesize(fi->path), ctime(&ft));
+ 				xfree(e);
+ 				if(a == ASKCANCEL) {
+ 					get_quit = true;
+diff -Naur yafc-1.0/src/put.c yafc-1.0-powerpcfixed/src/put.c
+--- yafc-1.0/src/put.c	2002-12-02 13:21:19.000000000 +0100
++++ yafc-1.0-powerpcfixed/src/put.c	2003-12-19 01:03:12.229524520 +0100
+@@ -217,9 +217,9 @@
+ 				e = xstrdup(ctime(&sb->st_mtime));
+ 				a = ask(ASKYES|ASKNO|ASKUNIQUE|ASKCANCEL|ASKALL|ASKRESUME,
+ 						ASKRESUME,
+-						_("Remote file '%s' exists\nLocal: %ld bytes, %sRemote: %ld bytes, %sOverwrite?"),
++						_("Remote file '%s' exists\nLocal: %lld bytes, %sRemote: %lld bytes, %sOverwrite?"),
+ 						shortpath(dest, 42, ftp->homedir),
+-						sb->st_size, e ? e : "unknown date",
++						(unsigned long long) sb->st_size, e ? e : "unknown date",
+ 						ftp_filesize(f->path), ctime(&ft));
+ 				xfree(e);
+ 				if(a == ASKCANCEL) {

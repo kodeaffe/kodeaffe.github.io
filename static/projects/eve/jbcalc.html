@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="author" content="fluxkompensator" />
+    <title>DEFY JumpBridge Calculator</title>
+    <script type="text/javascript">
+      var CONSUMPTION = 500;
+
+      function calc() {
+          var mass = document.getElementById('mass').value;
+          if (mass == 0) {
+            mass = document.getElementById('ship').value;
+          }
+          mass = Math.abs(parseInt(mass));
+
+          var ly = document.getElementById('ly').value;
+          if (ly == 0) {
+            ly = document.getElementById('distance').value;
+          }
+          ly = Math.abs(parseFloat(ly));
+
+          var fuel = Math.ceil((mass/1000000000.) * CONSUMPTION * ly);
+          var result = document.getElementById('result');
+          if (!result) {
+            var reply = 'Ship mass ' +  mass + 'kg, distance ' + ly + 'ly : ' +
+              fuel + ' unit(s) of liquid ozone';
+            alert(reply);
+          } else {
+            var result_mass = document.getElementById('result_mass');
+            result_mass.innerHTML = mass;
+            var result_ly = document.getElementById('result_ly');
+            result_ly.innerHTML = ly;
+            var result_fuel = document.getElementById('result_fuel');
+            result_fuel.innerHTML = fuel;
+
+            result.style.visibility = 'visible';
+          }
+
+          return false;
+      }
+    </script>
+    <style type="text/css">
+      td {
+        padding: 5px;
+      }
+      #result_fuel {
+        font-size: x-large;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DEFY JumpBridge Calculator</h1>
+    <form method="get" name="input" action="" enctype="text/plain" onsubmit="return calc();">
+      <table>
+      <tr>
+        <td>
+          <select id="ship">
+            <option value="0" selected="selected">Choose ship...</option>
+            <option value="103200000">Abaddon</option>
+            <option value="13500000">Absolution</option>
+            <option value="1237500000">Aeon</option>
+            <option value="1600000">Amarr Shuttle</option>
+            <option value="1003000">Amarr Navy Slicer</option>
+            <option value="1147000">Anathema</option>
+            <option value="1175000000">Anshar</option>
+            <option value="97100000">Apocalypse</option>
+            <option value="99300000">Apocalypse Imperial Issue</option>
+            <option value="99300000">Apocalypse Navy Issue</option>
+            <option value="1600000 ">Apotheosis</option>
+            <option value="11650000">Arazu</option>
+            <option value="11200000">Arbitrator</option>
+            <option value="1012500000">Archon</option>
+            <option value="1100000">Ares</option>
+            <option value="1125000000">Ark</option>
+            <option value="105200000">Armageddon</option>
+            <option value="97100000">Armageddon Imperial Issue</option>
+            <option value="11010000">Ashimmu</option>
+            <option value="13250000">Astarte</option>
+            <option value="1164000">Atron</option>
+            <option value="1687500000">Avatar</option>
+            <option value="10730000">Augoror</option>
+            <option value="10650000">Augoror Navy Issue</option>
+            <option value="12750000">Badger</option>
+            <option value="13500000">Badger Mark II</option>
+            <option value="1155000">Bantam</option>
+            <option value="13130000">Basilisk</option>
+            <option value="11550000">Bellicose</option>
+            <option value="13500000">Bestower</option>
+            <option value="97100000">Bhaalgorn</option>
+            <option value="13190000">Blackbird</option>
+            <option value="1187000">Breacher</option>
+            <option value="14820000">Broadsword</option>
+            <option value="13250000">Brutix</option>
+            <option value="1096000">Burst</option>
+            <option value="20000000">Bustard</option>
+            <option value="1270000">Buzzard</option>
+            <option value="1600000">Caldari Shuttle</option>
+            <option value="981000">Caldari Navy Hookbill</option>
+            <option value="12910000">Caracal</option>
+            <option value="9600000">Caracal Navy Issue</option>
+            <option value="1761000">Catalyst</option>
+            <option value="12070000">Celestis</option>
+            <option value="12720000">Cerberus</option>
+            <option value="1200000000">Charon</option>
+            <option value="1430000">Cheetah</option>
+            <option value="1080000000">Chimera</option>
+            <option value="1126000">Claw</option>
+            <option value="12500000">Claymore</option>
+            <option value="1665000">Coercer</option>
+            <option value="1185000">Condor</option>
+            <option value="1892000">Cormorant</option>
+            <option value="40000000">Covetor</option>
+            <option value="11500000">Crane</option>
+            <option value="999000">Crow</option>
+            <option value="1064000">Crucifier</option>
+            <option value="1003000">Cruor</option>
+            <option value="1050000">Crusader</option>
+            <option value="11810000">Curse</option>
+            <option value="12500000">Cyclone</option>
+            <option value="11730000">Cynabal</option>
+            <option value="823000">Daredevil</option>
+            <option value="11460000">Deimos</option>
+            <option value="15200000">Devoter</option>
+            <option value="97100000">Dominix</option>
+            <option value="14010000">Drake</option>
+            <option value="1189000">Dramiel</option>
+            <option value="11720000">Eagle</option>
+            <option value="1171000">Enyo</option>
+            <option value="13250000">Eos</option>
+            <option value="1762500000">Erebus</option>
+            <option value="1463000">Eris</option>
+            <option value="1124000">Executioner</option>
+            <option value="11020000">Exequror</option>
+            <option value="11540000">Exequror Navy Issue</option>
+            <option value="12230000">Falcon</option>
+            <option value="1025000000">Fenrir</option>
+            <option value="14010000">Ferox</option>
+            <option value="1572000">Flycatcher</option>
+            <option value="1600000">Gallente Shuttle</option>
+            <option value="970000">Gallente Navy Comet</option>
+            <option value="9600000">Gila</option>
+            <option value="1072000">Gold Magnate</option>
+            <option value="105200000">Golem</option>
+            <option value="1600000 ">Goru's Shuttle</option>
+            <option value="1056000">Griffin</option>
+            <option value="11980000">Guardian</option>
+            <option value="10910000">Guardian-Vexor</option>
+            <option value="1600000 ">Guristas Shuttle</option>
+            <option value="13500000">Harbinger</option>
+            <option value="1155000">Harpy</option>
+            <option value="1217000">Hawk</option>
+            <option value="1127500000">Hel</option>
+            <option value="1271000">Helios</option>
+            <option value="1371000">Heretic</option>
+            <option value="1150000">Heron</option>
+            <option value="11500000">Hoarder</option>
+            <option value="1370000">Hound</option>
+            <option value="11550000">Huginn</option>
+            <option value="40000000">Hulk</option>
+            <option value="12500000">Hurricane</option>
+            <option value="1083000">Hyena</option>
+            <option value="100200000">Hyperion</option>
+            <option value="1130000">Inquisitor</option>
+            <option value="997000">Imicus</option>
+            <option value="19000000">Impel</option>
+            <option value="1028000">Incursus</option>
+            <option value="1216000">Ishkur</option>
+            <option value="1110000">Ishtar</option>
+            <option value="10250000">Iteron</option>
+            <option value="11000000">Iteron Mark II</option>
+            <option value="10500000">Iteron Mark III</option>
+            <option value="11250000">Iteron Mark IV</option>
+            <option value="11750000">Iteron Mark V</option>
+            <option value="1366000">Jaguar</option>
+            <option value="1095000">Keres</option>
+            <option value="1163000">Kestrel</option>
+            <option value="1117000">Kitsune</option>
+            <option value="101800000">Kronos</option>
+            <option value="12070000">Lachesis</option>
+            <option value="1800000000">Leviathan</option>
+            <option value="121700000">Machariel</option>
+            <option value="20000000">Mackinaw</option>
+            <option value="103600000">Maelstrom</option>
+            <option value="1072000">Magnate</option>
+            <option value="999000">Malediction</option>
+            <option value="11550000">Maller</option>
+            <option value="12500000">Mammoth</option>
+            <option value="1466000">Manticore</option>
+            <option value="18500000">Mastodon</option>
+            <option value="1063000">Maulus</option>
+            <option value="98400000">Megathron</option>
+            <option value="105200000">Megathron Federate Issue</option>
+            <option value="105200000">Megathron Navy Issue</option>
+            <option value="997000">Merlin</option>
+            <option value="1600000">Minmatar Shuttle</option>
+            <option value="13000000">Moa</option>
+            <option value="1175000000">Moros</option>
+            <option value="11750000">Muninn</option>
+            <option value="13250000">Myrmidon</option>
+            <option value="1025000000">Naglfar</option>
+            <option value="1221000">Navitas</option>
+            <option value="1421000 ">Nemesis</option>
+            <option value="922500000">Niddhoggur</option>
+            <option value="14010000">Nighthawk</option>
+            <option value="99300000">Nightmare</option>
+            <option value="1025000000">Nomad</option>
+            <option value="1292500000">Nyx</option>
+            <option value="1175000000">Obelisk</option>
+            <option value="19500000">Occator</option>
+            <option value="11650000">Omen</option>
+            <option value="11650000">Omen Navy Issue</option>
+            <option value="13160000">Oneiros</option>
+            <option value="15420000">Onyx</option>
+            <option value="250000000">Orca</option>
+            <option value="11230000">Osprey</option>
+            <option value="10780000">Osprey Navy Issue</option>
+            <option value="105200000">Paladin</option>
+            <option value="148800000">Panther</option>
+            <option value="9600000">Phantasm</option>
+            <option value="15080000">Phobos</option>
+            <option value="1200000000">Phoenix</option>
+            <option value="11370000">Pilgrim</option>
+            <option value="1123000">Probe</option>
+            <option value="10000000">Procurer</option>
+            <option value="13500000">Prophecy</option>
+            <option value="10750000">Prorator</option>
+            <option value="1125000000">Providence</option>
+            <option value="10000000">Prowler</option>
+            <option value="1047000">Punisher</option>
+            <option value="1396000">Purifier</option>
+            <option value="1537500000">Ragnarok</option>
+            <option value="11040000">Rapier</option>
+            <option value="1075000">Raptor</option>
+            <option value="99300000">Rattlesnake</option>
+            <option value="99300000">Raven</option>
+            <option value="99300000">Raven Navy Issue</option>
+            <option value="99300000">Raven State Issue</option>
+            <option value="150300000">Redeemer</option>
+            <option value="1098000">Republic Fleet Firetail</option>
+            <option value="1171000">Retribution</option>
+            <option value="20000000">Retriever</option>
+            <option value="1125000000">Revelation</option>
+            <option value="1200000000">Rhea</option>
+            <option value="1067000">Rifter</option>
+            <option value="105300000">Rokh</option>
+            <option value="12730000">Rook</option>
+            <option value="1180000000">Rorqual</option>
+            <option value="11650000">Rupture</option>
+            <option value="1285000">Sabre</option>
+            <option value="12290000">Sacrilege</option>
+            <option value="12090000">Scimitar</option>
+            <option value="103600000">Scorpion</option>
+            <option value="11110000">Scythe</option>
+            <option value="10910000">Scythe Fleet Issue</option>
+            <option value="1112000">Sentinel</option>
+            <option value="11000000">Sigil</option>
+            <option value="1063000">Silver Magnate</option>
+            <option value="10000000">Skiff</option>
+            <option value="1150000">Slasher</option>
+            <option value="12500000">Sleipnir</option>
+            <option value="141700000">Sin</option>
+            <option value="11400000">Stabber</option>
+            <option value="9810000">Stabber Fleet Issue</option>
+            <option value="1100000">Stiletto</option>
+            <option value="965000">Succubus</option>
+            <option value="1075000">Taranis</option>
+            <option value="103300000">Tempest</option>
+            <option value="103300000">Tempest Fleet Issue</option>
+            <option value="103300000">Tempest Tribal Issue</option>
+            <option value="1057500000">Thanatos</option>
+            <option value="11280000">Thorax</option>
+            <option value="1542000">Thrasher</option>
+            <option value="1180000">Tormentor</option>
+            <option value="1006000">Tristan</option>
+            <option value="103600000">Typhoon</option>
+            <option value="1159000">Vagabond</option>
+            <option value="106100000">Vargur</option>
+            <option value="1163000">Vengeance</option>
+            <option value="10310000">Vexor</option>
+            <option value="10910000">Vexor Navy Issue</option>
+            <option value="11150000">Viator</option>
+            <option value="1080000">Vigil</option>
+            <option value="9830000">Vigilant</option>
+            <option value="105200000">Vindicator</option>
+            <option value="14010000">Vulture</option>
+            <option value="151100000">Widow</option>
+            <option value="1309000">Wolf</option>
+            <option value="981000">Worm</option>
+            <option value="10000000">Wreathe</option>
+            <option value="1320000000">Wyvern</option>
+            <option value="12580000">Zealot</option>
+          </select>
+        </td>
+        <td>
+          or precisely:
+        </td>
+        <td>
+          <input type="text" id="mass"  value="0" />kg
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select id="distance">
+            <option value="0" selected="selected">Choose distance...</option>
+            <option value="1.3">TXME - K5F (1.3ly)</option>
+            <option value="1">1 ly</option>
+            <option value="2">2 ly</option>
+            <option value="3">3 ly</option>
+            <option value="4">4 ly</option>
+            <option value="5">5 ly</option>
+          </select>
+        </td>
+        <td>
+           or precisely:
+        </td>
+        <td>
+          <input type="text" id="ly" value="0" size="3" maxlength="10" />ly
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input type="submit" value="Calculate fuel consumption" />
+        </td>
+      </tr>
+      </table>
+    </form>
+
+    <div id="result" style="visibility:hidden">
+        Ship mass <span id="result_mass"></span>kg,
+        distance <span id="result_ly"></span>ly,
+        required units of liquid ozone: <span id="result_fuel"></span>
+    </div>
+
+  </body>
+</html>
+

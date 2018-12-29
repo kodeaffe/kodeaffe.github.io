@@ -1,0 +1,145 @@
+--- pop3browser.orig	2003-11-13 18:21:44.000000000 +0100
++++ pop3browser	2003-11-13 18:36:06.000000000 +0100
+@@ -17,7 +17,39 @@
+ ####################################################################
+ 
+ 
+-print "pop3browser 0.3 -- (c) 2003 by Christoph Baumann\n";
++sub get_keylist
++{
++    my ($arg, @keylist, @hurz, $low, $high, $i);
++    $arg = shift;
++
++    if ($arg =~ /-/)
++    {
++        @hurz=split(/-/,$arg);
++        if ($hurz[0] > $hurz[1])
++        {
++            $low = $hurz[1];
++            $high = $hurz[0];
++        }
++        else
++        {
++            $low = $hurz[0];
++            $high = $hurz[1];
++        }
++        for ($i=$low; $i<=$high; $i++)
++        {
++            push(@keylist,$i);
++        }
++    }
++    else
++    {
++        push(@keylist,$arg);
++    }
++    return @keylist;
++}
++
++
++
++print "pop3browser 0.3.1 -- (c) 2003 by Christoph Baumann\n";
+ print "There is absolutely no warranty for this program!\n";
+ print "The GNU General Public License applies to this program.\n";
+ print "(see http://www.gnu.org)\n";
+@@ -372,43 +404,58 @@
+     
+     if (($cmd =~ /^del/)&&($connected > 0))
+     {
+-	chop($cmd);
+-	@hurz=split(/\s+/,$cmd);
+-	$key=$hurz[1];
+-	if (($key <= $number)&&($key > 0))
+-	{
+-	    print "marking message no. $key for deletion\n";
+-	    #only mark for deletion and do it on close or quit
+-	    #$folder->delete($key);
+-	    if ($tags[$key]!~ /d/)
+-	    {
+-		$tags[$key]="$tags[$key]d";
+-	    }
+-	}
+-	else
+-	{
+-	    print "illegal message number!\n";
+-	}
++    	chop($cmd);
++	    @hurz=split(/\s+/,$cmd);
++        shift(@hurz);
++	    foreach $arg (@hurz)
++	    {
++            @keylist = get_keylist($arg);
++            foreach $key (@keylist)
++            {
++	            if (($key <= $number)&&($key > 0))
++	            {
++	                print "marking message no. $key for deletion\n";
++	                #only mark for deletion and do it on close or quit
++	                #$folder->delete($key);
++	                if ($tags[$key]!~ /d/)
++	                {
++	                    $tags[$key]="$tags[$key]d";
++	                }
++                }
++	            else
++	            {
++	                print "illegal message number: $key!\n";
++	            }
++            }
++        }
+     }
+     
+     if (($cmd =~ /^undel/)&&($connected > 0))
+     {
+-	chop($cmd);
+-	@hurz=split(/\s+/,$cmd);
+-	$key=$hurz[1];
+-	if (($key <= $number)&&($key > 0))
+-	{
+-	    if ($tags[$key] =~ /d/)
+-	    {
+-		print "undeleting mail no. $key\n";
+-		$tags[$key] =~ s/d//;
+-	    }
+-	}
+-	else
+-	{
+-	    print "illegal message number!\n";
+-	}
++        chop($cmd);
++        @hurz=split(/\s+/,$cmd);
++        shift(@hurz);
++        foreach $arg (@hurz)
++        {
++            @keylist = get_keylist($arg);
++            foreach $key (@keylist)
++            {
++                if (($key <= $number)&&($key > 0))
++                {
++                    if ($tags[$key] =~ /d/)
++                    {
++                        print "undeleting mail no. $key\n";
++                        $tags[$key] =~ s/d//;
++                    }
++                }
++                else
++                {
++                    print "illegal message number: $key!\n";
++                }
++            }
++        }
+     }
++
+     
+     if ($cmd =~ /help/)
+     {
+@@ -420,8 +467,8 @@
+ 	print "hosts        : list available hosts\n";
+ 	print "list         : list sizes and message numbers of the mails on the account\n";
+ 	print "show n       : show header and some body lines of mail number n\n";
+-	print "del(ete) n   : delete mail number n\n";
+-	print "undel(ete) n : remove delete tag from mail number n\n";
++	print "del(ete) n   : delete mail numbers n ('1 2 3' or '1-3' or '3-1' or '1 2-3 5-4')\n";
++	print "undel(ete) n : remove delete tag from mail numbers n (s 'del')\n";
+ 	print "kill expr    : delete mails matching expr in header\n";
+ 	print "unkill expr  : remove delete tag from mails matching expr in header\n";
+ 	print "quit         : quit program and delete marked mails\n";

@@ -1,0 +1,225 @@
+html, body {
+  color: #d70;
+  background-color: #007;
+  padding: 0;
+  margin: 0;
+  font-family: Verdana;
+}
+
+h1, h2, h3, h4 {
+	color: #d70;
+}
+
+footer {
+  color: #999;
+  font-size: x-small;
+}
+
+a {
+	color: #eee;
+}
+a:hover,
+a:focus,
+a:active {
+	color: #eee;
+}
+
+.navbar-left img {
+	height: 80px;
+	margin-right: 10px;
+}
+
+.navbar-brand a {
+	font-size: xx-large;
+	color: #d70;
+}
+
+.navbar-inverse {
+	background-color: #029;
+	border: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	height: 80px;
+	color: #d70;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+	color: #eee !important;
+	background-color: #007;
+}
+
+.navbar-inverse .navbar-nav > li > a:visited {
+	color: #d70;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #eee;
+	text-decoration: underline;
+}
+
+
+.main {
+	background-color: #029;
+	border-radius: 6px;
+	padding: 20px;
+	margin-top: 10px;
+}
+.main h2 {
+	margin-top: 0;
+}
+.main #years {
+	margin-top: 10px;
+}
+
+
+.sidebar {
+	border: 1px solid #029;
+	padding: 10px;
+	border-radius: 6px;
+	margin-top: 10px;
+}
+.sidebar h2 {
+	margin-top: 0;
+}
+.sidebar ul {
+	padding-left: 20px;
+}
+
+.modal-header {
+	background-color: #007;
+	border-bottom: none;
+}
+.modal-header button {
+	color: #d70;
+}
+.modal-body {
+	background-color: #008;
+}
+.modal-footer {
+	border: none;
+	background-color: #007;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td,
+.table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #007;
+}
+
+
+.container#content {
+	margin-top: 80px;
+}
+
+
+#kartuliflash #flashcard .row {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}	
+#kartuliflash #georgian {
+	font-size: x-large;
+}
+
+#kartuliflash #english {
+	font-size: larger;
+}
+
+#kartuliflash #guess {
+	width: 50%;
+	display: inline;
+}	
+
+#kartuliflash #check {
+	margin-top: -5px;
+}
+
+#kartuliflash #score {
+	font-size: x-large;
+}
+
+
+#kartuliflash #letter-table {
+	margin-top: 10px;
+}
+
+
+
+
+
+#spacebears canvas {
+  width: 550px !important;
+  height: 413px !important;
+  background:url(/static/img/spacebears/background.jpg);
+  margin-top: 10px;
+}
+
+
+#spacebears #intro,
+#spacebears #scoreboard,
+#spacebears #actions,
+#spacebears #settings {
+  margin: 10px 0;
+}
+
+
+#spacebears #intro #fastest {
+  font-size: larger;
+	font-weight: bold;
+}
+
+#spacebears #panel > div {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#spacebears #scoreboard #score {
+  font-size: xx-large;
+}
+
+#spacebears .alert {
+	padding: 5px;
+}
+
+#spacebears #scoreboard #miss {
+  font-size: xx-large;
+}
+
+#spacebears #scoreboard #elapsed {
+  font-size: larger;
+}
+
+
+#spacebears #actions button {
+  width: 100px;
+}
+
+#spacebears #settings input {
+	color: #d70;
+	background-color: #007;
+	width: 60px;
+	margin: 0 3px;
+}
+
+
+
+#portfolio #intro {
+	margin-bottom: 20px;
+}
+
+
+#portfolio button {
+	margin: 5px 0;
+}
+#portfolio .year {
+	margin-bottom: 50px;
+}
+
+#portfolio .item {
+	margin: 30px 0;
+	border-top: 1px solid white;
+}
+

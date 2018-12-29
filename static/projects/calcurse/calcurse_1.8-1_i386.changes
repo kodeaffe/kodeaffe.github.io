@@ -1,0 +1,21 @@
+Format: 1.7
+Date: Thu, 09 Aug 2007 02:31:07 +1200
+Source: calcurse
+Binary: calcurse
+Architecture: source i386
+Version: 1.8-1
+Distribution: unstable
+Urgency: low
+Maintainer: Sebastian Henschel <calcurse@kodeaffe.de>
+Changed-By: Sebastian Henschel <calcurse@kodeaffe.de>
+Description: 
+ calcurse   - text-based calendar and todo manager
+Changes: 
+ calcurse (1.8-1) unstable; urgency=low
+ .
+   * New upstream version.
+Files: 
+ f964da8fbfd16c727451c45bc331d354 362 utils optional calcurse_1.8-1.dsc
+ 96775ead7162a804ed72655169e03608 397781 utils optional calcurse_1.8.orig.tar.gz
+ 9a88c1b8a5a55ff57887cd9f9f18bae5 7025 utils optional calcurse_1.8-1.diff.gz
+ b1bc302dbd23fd933f3de81b6dad7886 170736 utils optional calcurse_1.8-1_i386.deb

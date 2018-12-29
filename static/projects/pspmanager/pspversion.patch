@@ -1,0 +1,66 @@
+diff -Naur src.orig/pspcontroller.cpp src/pspcontroller.cpp
+--- src.orig/pspcontroller.cpp	2005-09-05 21:01:24.194130704 +0200
++++ src/pspcontroller.cpp	2005-09-05 21:13:05.180564568 +0200
+@@ -23,6 +23,10 @@
+ #include <qdir.h>
+ #include <qprocess.h>
+ #include <qstringlist.h>
++#include <qtabwidget.h>
++
++const short pspversionsupported = 150;
++
+ 
+ PSPController::PSPController(mainWindow *mainwindow)
+ {
+@@ -64,6 +68,14 @@
+         mainwindow->tellError(mainWindow::tr("Some options are not correctly set"));
+     }
+ 
++    findPSPVersion(options);
++    if (pspversion > pspversionsupported)
++    {
++        mainwindow->tabWidget->showPage( mainwindow->TabPage );
++        mainwindow->tabWidget->setTabEnabled( mainwindow->tab, FALSE );
++        mainwindow->tellMessage( mainWindow::tr( "Your PSP is too fresh. There is no hack to put homebrew software on your device, yet.\nSection PBP File was disabled!" ));
++    }
++
+     mainwindow->setPSPDir(options->getPSPDir());
+     //TODO: program breaks if we ask the GUI to update
+     //the checkBox button of hideDamage option to FALSE value
+@@ -339,6 +351,17 @@
+ }
+ 
+ 
++/* Get/Find the version of the PSP connected to the machine */
++void PSPController::findPSPVersion(PSPOptions *options)
++{
++    pspversion = pspversionsupported;
++    if (QFile::exists(options->getPSPDir() + "psp/system/browser"))
++    {
++        pspversion = 200;
++    }
++}
++
++
+ 
+ void PSPController::transferSavegamesComputer(QStringList list)
+ {
+diff -Naur src.orig/pspcontroller.h src/pspcontroller.h
+--- src.orig/pspcontroller.h	2005-09-05 21:01:24.195130552 +0200
++++ src/pspcontroller.h	2005-09-05 21:13:05.180564568 +0200
+@@ -62,13 +62,14 @@
+         void setOverwriteSavegames(bool overwrite);
+         void deleteComputerSavegames(QStringList savegames);
+         void deletePSPSavegames(QStringList savegames);
+-
+     private:
+         PBPManager *pbpmanager;
+         mainWindow *mainwindow;
+         savegameManager *savegamemanager;
+         PSPOptions *options;
++        short pspversion;
+         void setSavegames();
++        void findPSPVersion(PSPOptions *options);
+ };
+ 
+ #endif

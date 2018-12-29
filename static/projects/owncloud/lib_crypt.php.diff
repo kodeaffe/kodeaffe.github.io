@@ -1,0 +1,81 @@
+--- lib/crypt.php.orig	2011-08-31 15:20:03.894353563 +0400
++++ lib/crypt.php	2011-08-31 15:23:35.666353588 +0400
+@@ -110,11 +110,32 @@
+          */
+         public static function decrypt( $content, $key) {
+ 		$bf = new Crypt_Blowfish($key);
+-		return($bf->encrypt($contents));
++		return($bf->decrypt($content));
+         }       
+ 
+ 
+         /**
++         * @brief add 8-byte padding 
++         * @param $content
++         * @returns $content padded content
++         *
++         * This function adds 8-byte padding when content is fed block-wise to
++         * Blowfish (e.g. file encryption).
++         * see http://www.di-mgt.com.au/cryptopad.html#examplecbc
++         */
++	private static function _padding_add( $content) {
++		$pad = 8;
++		$missing = $pad - (strlen($content) % $pad);
++		if ($missing == $pad) return $content;
++
++		for ($i = 0; $i < $missing; $i++) {
++			$content .= chr($missing);
++		}
++		return $content;
++	}
++
++
++        /**
+          * @brief encryption of a file
+          * @param $filename
+          * @param $key the encryption key
+@@ -127,7 +148,8 @@
+ 			$handlewrite = fopen($filename.OC_Crypt::$encription_extension, "wb");
+ 			while (!feof($handleread)) {
+ 				$content = fread($handleread, 8192);
+-				$enccontent=OC_CRYPT::encrypt( $content, $key);
++				$content = OC_CRYPT::_padding_add($content);
++				$enccontent = OC_CRYPT::encrypt( $content, $key);
+ 				fwrite($handlewrite, $enccontent);
+ 			}
+ 			fclose($handlewrite);
+@@ -136,6 +158,22 @@
+ 		fclose($handleread);
+ 	}
+ 
++        /**
++         * @brief remove 8-byte padding 
++         * @param $content
++         * @returns $content padded content
++         *
++         * This function removes 8-byte padding when content had been fed
++         * block-wise to Blowfish (e.g. file decryption).
++         */
++	private static function _padding_remove( $content) {
++		$rev = strrev($content);
++		$last = ord($rev[0]);
++		if ($last > 0 && $last <= 8) {
++			return substr($content, 0, strlen($content) - $last);
++		}
++		return $content;
++	}
+ 
+         /**
+          * @brief decryption of a file
+@@ -150,8 +188,9 @@
+ 			$handlewrite = fopen($filename, "wb");
+ 			while (!feof($handleread)) {
+ 				$content = fread($handleread, 8192);
+-				$enccontent=OC_CRYPT::decrypt( $content, $key);
+-				fwrite($handlewrite, $enccontent);
++				$deccontent = OC_CRYPT::decrypt( $content, $key);
++				$deccontent = OC_CRYPT::_padding_remove($deccontent);
++				fwrite($handlewrite, $deccontent);
+ 			}
+ 			fclose($handlewrite);
+ 			unlink($filename.OC_Crypt::$encription_extension);

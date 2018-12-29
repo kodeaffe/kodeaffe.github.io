@@ -1,0 +1,40 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.7
+Date: Mon, 26 Dec 2005 13:18:05 +0100
+Source: iptables-ipv4-perl
+Binary: libiptables-ipv4-perl
+Architecture: source i386
+Version: 0.98-3
+Distribution: unstable
+Urgency: low
+Maintainer: Sebastian Henschel <shensche@debian.org>
+Changed-By: Sebastian Henschel <shensche@debian.org>
+Description: 
+ libiptables-ipv4-perl - IPTables::IPv4 - Perl module for manipulating iptables rules
+Changes: 
+ iptables-ipv4-perl (0.98-3) unstable; urgency=low
+ .
+   * Picked up the package.
+   * debian/rules:
+     - Changed dh_installmanpages to dh_installman
+     - Set DH_COMPAT=4
+     - Appended "Changes" to dh_installchangelogs
+   * debian/control:
+     - Bumped Standards-Version to 3.6.2
+     - Added homepage and author to description
+     - Added iptables-dev to Build-Depends
+     - Set Build-Depends of debhelper to >> 4
+Files: 
+ f1a28bb412b71a6e435d1fd7c0369390 651 perl optional iptables-ipv4-perl_0.98-3.dsc
+ fe230db9b66faa6016b1ea52703902e5 11248 perl optional iptables-ipv4-perl_0.98-3.diff.gz
+ 1b028650cf2937669cee0193cc29b83f 114850 perl optional libiptables-ipv4-perl_0.98-3_i386.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iD8DBQFDsA+3reHfL3pi+bQRAkpNAJ0XsJSyZsYDGOEfr15jikSlR3WQoACfYgwm
+8q0SV/2z/b292rO1xdO6uVw=
+=QJMr
+-----END PGP SIGNATURE-----

@@ -1,0 +1,11 @@
+--- analogtv.c.orig	2004-09-11 15:40:35.559202280 +0200
++++ analogtv.c	2004-09-11 16:48:50.962606328 +0200
+@@ -1053,6 +1053,8 @@
+   float *rpf;
+   char *level_copyfrom[3];
+   int xrepl=it->xrepl;
++
++  usleep (1);
+   for (i=0; i<3; i++) level_copyfrom[i]=NULL;
+ 
+   for (y=ytop; y<ybot; y++) {

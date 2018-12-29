@@ -1,0 +1,738 @@
+/* This is a listing of all off the CLASSES and their cooresponding attributes.*/
+
+/*-------- Topnav classes ----------------*/
+
+.topnavtext {
+	font-size: 11px;
+	color: #D09448;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	}
+.menu2 {
+	color: #A5936A;
+	font-weight: bold;
+	font-style: italic;
+	}
+	
+/*-------- Navtrail classes ----------------*/
+.navtrailcurrent {	
+	font-size: 8pt;
+	color: #FFFFFF;
+	}
+.navtrail {	
+	font-size: 8pt;
+	color: #999999;
+	}	
+a.navtrail {
+	color: #999999;	
+	text-decoration: none;
+	}
+a:visited.navtrail {
+	color: #999999;
+	}
+a:hover.navtrail {
+	text-decoration: underline;
+	color: #B03B3B;
+	}
+
+/*-------- Poll classes ----------------*/
+
+.poll {
+	margin-left: 8px;
+	margin-right: 2px;
+	}
+.pollheader {
+	font-family: Arial, helvetica, sans-serif;
+	font-size: 12pt;
+	margin-bottom: 0px;	
+	color: #D09448;
+	font-weight: bold;
+	}
+.polloption {
+	font-size: 8pt;		
+	color: #999999;
+	margin-left: 8px;
+	margin-right: 2px;
+	margin-bottom: 10px;
+	}		
+.pollhelp {
+	font-size: 8pt;
+	margin-top:  1px;	
+	margin-bottom: 0px;
+	margin-left: 2px;
+	margin-right: 2px;
+	}	
+.pollcell {
+	}
+.pollsubmit {
+	border : 1 solid #FFFFFF;
+	color: #000000;
+	font-size: 10pt;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	}
+
+/*-------------News Archive Search classes-----------------*/
+
+
+.searchcontentcell {
+
+	font-size: 8pt;	
+	color: #FFFFFF;
+	}	
+.searchtitle {
+	color: #FFFFFF;
+	font-weight: bold; 
+	}
+.searchsubmit {
+	border : 1 solid #FFFFFF;
+	background: #8387A8;
+	color: #FFFFFF;
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	}
+
+.searchcontent {
+	}	
+	
+/*-------- Content classes ----------------*/
+
+.margin {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 30px;
+	margin-right: 12px;
+	/*background: #FF0000;*/
+	}
+
+.maincontentcell {
+	}
+.mainlogocell {
+	}
+
+.gamemaincell {
+	}
+		
+.framecell {
+	background: #5A6C95;
+
+	}	
+.framecell2 {
+	background: #2D364B;
+	}
+.sidepanel2 {
+	font-size: 8pt;
+	color: #7288B9;
+}
+.sidepanel3 {
+	font-size: 8pt;
+}
+.sidepanel1 {
+	font-size: 8pt;
+	margin-top: 3px;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+.sidepaneltable {
+	background: #000000;
+}
+.login {
+	font-size: 8pt;
+}
+.indent {
+	margin-top: 0px;
+	margin-left: 60px;
+}
+
+.newstitle {
+	font-family: Verdana, arial, helvetica, sans-serif;
+	font-size: 11pt;
+	color: #FFFFFF;	
+	font-weight: bold;
+	}
+
+/*-------- Player / DM / Builder classes ----------------*/
+.playersnav {
+	/*font-size: 8pt;*/
+	color: #BC3636;
+	}	
+p.playersnav {		
+	margin-left: 60px;
+	margin-top: 2px;
+}	
+/*a.playersnav {
+	text-decoration: underline;
+	color: #FFFFFF;	
+	}
+a:visited.playersnav {
+	color: #FFFFFF;
+	}
+a:hover.playersnav {
+	text-decoration: underline;
+	color: #BC3636;
+	}*/
+
+.dmsnav {
+	/*font-size: 8pt;*/
+	color: #6C9A40;
+	}	
+p.dmsnav {	
+	margin-left: 60px;
+	margin-top: 2px;	
+}
+/*a.dmsnav {
+	text-decoration: underline;
+	color: #FFFFFF;	
+	}
+a:visited.dmsnav {
+	color: #FFFFFF;
+	}
+a:hover.dmsnav {
+	text-decoration: underline;
+	color: #6C9A40;
+	}	*/
+
+.buildersnav {
+	/*font-size: 8pt;*/
+	color: #B66B12;
+	}	
+p.buildersnav {	
+	margin-left: 60px;
+	margin-top: 2px;	
+}
+/*a.buildersnav {
+	text-decoration: underline;
+	color: #FFFFFF;	
+	}
+a:visited.buildersnav {
+	color: #FFFFFF;
+	}
+a:hover.buildersnav {
+	text-decoration: underline;
+	color: #B66B12;
+	}	*/
+	
+.players {
+	margin-left: 60px;
+	margin-top: 8px;
+	color: #BC3636;
+}
+.dms {
+	margin-left: 60px;
+	margin-top: 8px;
+	color: #6C9A40;
+}
+.builders {
+	margin-left: 60px;
+	margin-top: 8px;
+	color: #B66B12;
+}
+/*-------- End Player / DM / Builder classes ----------------*/
+
+.msgtable {
+	background-color: #FFFFFF;
+}
+.maintable {
+	background: #000000;
+	}
+	
+	
+.titlehr {
+	height: 1px;
+	color: #FF9900;
+	}				
+.title {
+	font-family: Verdana, arial, helvetica, sans-serif;
+	font-size: 18pt;
+	color: #FFFFFF;	
+	margin-bottom: 10px;
+	}	
+.small {
+	font-size: 10px;
+	}	
+	
+.celldark1 {
+	background: #666666;
+	}	
+.celldark2 {
+	background: #000000;
+	}	
+
+.blackthin {
+	height: 1px;
+	}	
+
+.newsmore {
+	margin-top: 20px;
+	margin-bottom: 4px;
+	margin-left: 8px;
+	margin-right: 8px;
+	}
+
+/*-------- Right Sidebar classes ---------*/
+
+.rightsidebar {
+	font-size: 8pt;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 4px;
+	margin-right: 4px;	
+	}
+
+/*-------- Footer classes ----------------*/
+
+.legaltext {
+	font-size: 8pt;
+	color: #999999;
+	}
+.gamefootercell {
+	}
+.footercell {
+	}
+.footercellarrow {
+	background: #121725;
+	}
+	
+/*--------------------------------------------------------------------------*/
+/* This is a listing of all off the ID's and their cooresponding attributes. */
+
+/*----- Content Div's -----*/
+#divContent {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 769px;
+	visibility: hidden;
+	}	
+
+#divHeader {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 698px;
+	visibility: hidden;
+	}
+#divtopnavbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 391px;
+	visibility: hidden;
+}	
+#divswirl {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 137px;
+	visibility: hidden;
+}
+	
+/*----- End Content Div's -----*/	
+	
+/*--------------------------------------------------------------------------*/
+/* This is a listing of all off the TAGS and their cooresponding attributes.*/
+
+a            {
+	color: #6282C5;
+	text-decoration: underline;
+	}
+	
+a:visited {
+	color: #99CCFF;
+	}
+a:hover      {
+	color: #B03B3B;
+	text-decoration: underline;
+	}
+a:active {
+	color: #B03B3B;
+	}	
+	
+
+b            {
+	color: #FFFFFF;
+	}
+
+body         {
+	background: #000000;
+	margin-top: 3px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	color: #FFFFFF;	
+	}
+
+em           {
+	color: #FFFFFF;
+	}
+
+form         {
+	margin-bottom: 4px;
+	}
+h2           {
+	font-family : Verdana, arial, sans-serif;
+	font-size : 13pt;	
+	color: #FFFFFF;
+	}	
+h3           {
+	font-family : Verdana, arial, sans-serif;
+	font-size : 12pt;
+	color: #FFFFFF;
+	}	
+h4           { 
+	font-family : Verdana, arial, sans-serif;
+	font-size : 10pt;
+	color: #FFFFFF;
+	}
+hr           {
+	height: 1px;
+	/*color: #0000FF;*/
+	}
+i            {
+	color: #FFFFFF;
+	}
+ol           {  	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #CCCCCC;
+	 }
+p            { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #CCCCCC;
+	}
+pre          { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #CCCCCC;
+	 }
+select       { 
+	font-size : 8pt;
+ }
+strong       {
+	color: #FFFFFF;
+	}
+td           {
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10pt;
+		color: #CCCCCC;
+}
+ul           {  	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #CCCCCC;
+	 }
+
+/* Form styles */
+
+.smallertext {
+	font-size: 8pt;
+}
+
+.input90 {
+	width: 90px;
+	background-color: #e8e8e8;
+	border-width: 1px;
+	border-style: solid; 
+	font-size: 9pt;
+}
+
+.input60 {
+	width: 60px;
+	background-color: #e8e8e8;
+	border-width: 1px;
+	border-style: solid; 
+	font-size: 9pt;
+}
+
+.input80 {
+	width: 80px;
+	background-color: #e8e8e8;
+	border-width: 1px;
+	border-style: solid; 
+	font-size: 9pt;
+}
+
+.input100 {
+	width: 120px;
+	background-color: #e8e8e8;
+	border-width: 1px;
+	border-style: solid; 
+	font-size: 9pt;
+}
+
+.smallgobutton {
+	width: 30px;
+	background-color: #e8e8e8;
+	color: #000000;
+	border-width: 1px;
+	border-style: solid; 
+	font-size: 9pt;
+}
+
+.bracketlink {
+	color: #999999;
+	}	
+a.bracketlink {
+	color: #999999;	
+	text-decoration: none;
+	}
+a:visited.bracketlink {
+	color: #999999;
+	}
+a:hover.bracketlink {
+	text-decoration: underline;
+	color: #FFFFFF;
+	}	
+
+.bracket {
+	color: #D09448;
+	}
+.quote {
+	font-size: 8pt;
+	color: #AAAAAA;
+	border-top: solid 1px #999999;
+	border-bottom: solid 1px #999999;
+	}	
+.postedtext {	
+	color: #AAAAAA;
+}	
+.white {
+	color: #FFFFFF;
+}
+.alert {
+	border-top: solid 1px #FF6666;
+	border-bottom: solid 1px #FF6666;
+	margin-top:10px;
+	margin-bottom: 0px;
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+	
+.maintable {
+	background-color: #5A6C95;
+}
+
+.maintable2 {
+	background-color: #363F55;
+}
+
+.innerheader {
+	color: #cccccc;
+	background-color: #333333; /*26354E;*/
+}
+
+.categorycell {
+	background-color: #26354E;
+}
+
+.postcell {
+	background-color: #000000;
+}
+
+.forumdescription {
+	font-size: 8pt;
+}
+
+.postnos {
+	background-color: #000000;
+}
+
+.lastpost { 
+	font-size: 8pt;
+	background-color: #26354E;
+	width: 140;
+}
+
+.topiclastpost { 
+	font-size: 8pt;
+	background-color: #000000;
+	width: 140;
+}
+
+.topicuname { 
+	font-size: 8pt;
+	color: #f0dbbd;
+}
+
+.topicviews { 
+	background-color: #26354E;;
+}
+
+.topicreplies { 
+	background-color: #26354E;
+}
+
+.forumtable {
+	background-color: #2f3742;
+}
+
+.forumcolor1 {
+	background-color: #000000;
+}
+
+.forumcolor2 {
+	background-color: #1a283c;
+}
+
+.forumcolor3 {
+	background-color: #234124;
+}
+
+.topictitle { 
+	background-color: #000000;
+}
+
+.topicicon { 
+	background-color: #000000;
+}
+
+.moderators {
+	font-size: 8pt;
+} 
+
+.forumcell {
+	background-color: #000000;
+}
+
+.datetime {
+	font-size: 8pt;
+	align: right;
+}
+
+.bottommenu {
+	font-size: 9pt;
+}
+
+.copyright {
+	font-size: 8pt;
+}
+
+.statsblock {
+	font-size: 8pt;
+}
+
+.blackbg {
+	background: #000000;
+}
+
+.prefsheading {
+	background: #1E1F22;
+}
+
+.prefsoptions {
+	background: #000000;
+}
+
+.search1 {
+	background: #1E1F22;
+}
+
+.search2 {
+	background: #000000;
+}
+
+.profilecla {
+	background: #1E1F22;
+}
+
+.profileclb {
+	background: #000000;
+}
+
+.smalltext {
+	font-size: 8pt;
+}
+
+.mlistrow1 {
+	background: #000000;
+}
+
+.mlistrow2 {
+	background: #26354E;
+}
+
+.mlistrow3 {
+	background: #834705;
+}
+
+.mlistheader {
+	background: #000000;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.regmust {
+	background: #26354E;
+}
+.regnormal {
+	background: #000000;
+}
+
+.highlight {
+	color: yellow;
+}
+
+.announcement {
+	font-weight: bold;
+	color: #FF6666;
+}
+
+.sticky {
+	font-weight: bold;
+	color: #FFFF66;
+}
+
+.smallertext {
+	font-size: 8pt;
+}
+
+.privflogintable {
+	background: #000000;
+}
+
+.profhead {
+	background: #1E1F22;
+}
+
+.profinfo {
+	background: #000000;
+}
+
+.forumname {
+	font-size: 12pt;
+	font-weight:bold;
+}
+
+.modlist {
+	font-size: 8pt;
+}
+
+.keytext {
+	font-size: 8pt;
+}
+
+.vtclass1 {
+	background: #1a283c;
+}
+
+.vtclass2 {
+	background: #000000;
+}
+
+.repheader {
+	background: #1E1F22;
+}
+
+.repinfo {
+	background: #000000;
+}
+
+.onclass1 {
+	background: #1E1F22;
+}
+
+.onclass2 {
+	background: #000000;
+}

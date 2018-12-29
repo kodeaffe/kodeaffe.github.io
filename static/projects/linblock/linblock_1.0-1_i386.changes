@@ -1,0 +1,33 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.7
+Date: Mon, 26 Dec 2005 17:29:53 +0100
+Source: linblock
+Binary: linblock
+Architecture: source all
+Version: 1.0-1
+Distribution: unstable
+Urgency: low
+Maintainer: Sebastian Henschel <shensche@debian.org>
+Changed-By: Sebastian Henschel <shensche@debian.org>
+Description: 
+ linblock   - Automatically download antip2p blacklist + install into Linux's I
+Closes: 330914
+Changes: 
+ linblock (1.0-1) unstable; urgency=low
+ .
+   * Initial Release, closes: #330914.
+Files: 
+ 1de35fa28bce3641233c5e02ab89f370 568 utils extra linblock_1.0-1.dsc
+ 91a6197138ebdce01bd750bb8665280a 5872 utils extra linblock_1.0.orig.tar.gz
+ e2b48909c8bc3b8864652b1a57f271b9 5572 utils extra linblock_1.0-1.diff.gz
+ 85cc9b4ab806d4433cff7f7cf9b83f3d 12266 utils extra linblock_1.0-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iD8DBQFDsCF2reHfL3pi+bQRAsr9AJ4oN3P/3vBtJZ8JMoZrDMi89nedRgCdHPmR
++6Paq1LfAWgrow79w6Q5Pxw=
+=/mx9
+-----END PGP SIGNATURE-----
