@@ -1,6 +1,7 @@
 # kodeaffe
 
-A little web page to show kodeaffe's accomplishments.
+A little web page to show kodeaffe's accomplishments. Check
+https://kodeaffe.github.io to see it live.
 
 
 ## Build
