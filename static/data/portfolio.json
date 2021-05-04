@@ -1,19 +1,25 @@
-[{
+[
+{
+	"year": "2021",
+	"items": [
+		{
+			"header": "Software Developer at Passivhaus Institut",
+			"start": "2017-12",
+			"end": "2021-04",
+			"link_href": "http://database.passivehouse.com",
+			"link_text": "database.passivehouse.com",
+			"description": "Lead development of the in-house database to service internal administration processes, act as a licensing server and provide public data for external use",
+			"technologies": ["Python", "Django", "HTML", "CSS", "jQuery", "GraphQL", "LaTeX"]
+		}
+	]
+},
+{
 	"year": "2019",
 	"items": [
 		{
-			"header": "Software Developer at Passivehouse Institute",
-			"start": "2017-12",
-			"end": "ongoing",
-			"link_href": "http://passivehouse.com",
-			"link_text": "passivehouse.com",
-			"description": "Development of the in-house database whose public frontend can be seen at <a href=\"https://database.passivehouse.com\">database.passivehouse.com</a>",
-			"technologies": ["Python", "Django"]
-		},
-		{
 			"header": "Administration of kodeaffe.de&apos;s host",
 			"start": "2007-04",
-			"end": "ongoing",
+			"end": "2019-03",
 			"link_href": "",
 			"link_text": "",
 			"description": "Administration of the host machine running kodeaffe.de and a couple of other domains.",
